@@ -21,11 +21,11 @@ func main() {
 }
 
 func handleRoot(ctx *iris.Context) {
-	email := ctx.FormValueString("email")
+	username := ctx.FormValueString("username")
 	password := ctx.FormValueString("password")
 
 	resp := Resp{}
-	ok, err := auth(email, password)
+	ok, err := auth(username, password)
 	if err != nil {
 		log.Printf("auth failed: %v\n", err)
 		resp.Code = iris.StatusInternalServerError
@@ -46,8 +46,10 @@ func handleRoot(ctx *iris.Context) {
 	return
 }
 
-func auth(email, password string) (bool, error) {
-	if email == "admin@email.com" && password == "linker" {
+func auth(username, password string) (bool, error) {
+	if username == "admin" && password == "linker" {
+		return true, nil
+	} else if username == "tom" && password == "cat123" {
 		return true, nil
 	}
 	return false, nil
