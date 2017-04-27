@@ -15,7 +15,7 @@ type Resp struct {
 
 func main() {
 
-	iris.Post("/user/login", handleRoot)
+	iris.Post("/user/ulogin", handleRoot)
 
 	iris.Listen(":8080")
 }
@@ -50,6 +50,8 @@ func auth(username, password string) (bool, error) {
 	if username == "admin" && password == "linker" {
 		return true, nil
 	} else if username == "tom" && password == "cat123" {
+		return true, nil
+	} else if username == "bob" && password == "secret" {
 		return true, nil
 	}
 	return false, nil
